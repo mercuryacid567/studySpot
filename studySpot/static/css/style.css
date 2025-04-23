@@ -1,0 +1,47 @@
+.bg-index{
+  background-color: #598DBE;
+  background-size: cover;
+}
+
+.navbar a.nav-link {
+  color: #FFFEF6 !important;
+}
+.bg-dark {
+  background-color: #be7e59 !important;
+}
+
+.ms-footer {
+  background-color: #598DBE;
+}
+.ms-footer p {
+  color: #ffffff;
+  font-size: 13px;
+}
+.ms-footer a:hover {
+  color: #fff;
+  text-decoration: none;
+}
+.ms-footer-bottom span{
+  font-size: 13px;
+  line-height: 38px;
+}
+.ms-footer-bottom a {
+  color: #fff;
+  text-decoration: none;
+}
+.ms-footer-bottom a:hover {
+  color: #598DBE#598DBE;
+}
+.img-card-200 {
+  width: fit-content;
+  max-height: 200px;
+}
+.img-card-400 {
+  width: fit-content;
+  max-height: 400px;
+}
+
+h2 {
+  font-size: xxx-large;
+  text-shadow: 2px 2px #be6459;
+}
