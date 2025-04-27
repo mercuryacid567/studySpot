@@ -27,7 +27,8 @@
             });
 
             var infowindow = new google.maps.InfoWindow({
-                content: location.name
+                content: location.name + " | " + "Location: " + location.location +
+                    " | " + "Spots: " + location.spots
             });
 
             infoWindow.push(infowindow)

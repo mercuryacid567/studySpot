@@ -75,6 +75,8 @@ class MapView(View):
                 'lat': float(a.lat),
                 'lng': float(a.lng),
                 'name': a.name,
+                'spots' : str(a.spots),
+                "location": a.location,
             }
 
             locations.append(data)
