@@ -9,6 +9,47 @@
 </header>
 <div class="p-5">
   <div class="container">
+      <div class="pageholder">
+    <div class="titleholder">
+
+        <div class="title"> Google Maps API Data </div>
+
+    </div>
+    <div class="linkholder">
+        {% if mydata.count == 0 %}
+            <div> No data available </div>
+        {% else %}
+            <table id="ourtable3" class="myTable m-3">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Spots</th>
+                        <th>Time</th>
+                        <th>Location</th>
+                        <th>More Info</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    {% for a in mydata %}
+                    <tr>
+                        <td> {{a.id}} </td>
+                        <td> {{a.name}} </td>
+                        <td> {{a.spots}} </td>
+                        <td> {{a.time}} </td>
+                        <td> {{a.location}} </td>
+                        <td> <a href="{% url 'my_geocoding_view' a.id%}"> More Info!</a></td>
+
+                    </tr>
+
+                    {% endfor%}
+                </tbody>
+            </table>
+        {% endif %}
+     </div>
   </div>
+</div>
 </div>
 {% endblock content %}

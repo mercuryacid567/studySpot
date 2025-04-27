@@ -1,8 +1,10 @@
 from django.urls import path
-from . import views
-
+from .views import HomeView
+from .views import GeocodingView
+from .views import MapView
 
 urlpatterns = [
-    path('', views.index, name='home.index'),
-    path('about', views.about, name='home.about'),
+    path('', HomeView.as_view(), name='home'),
+    path('geocoding/<int:pk>', GeocodingView.as_view(), name='my_geocoding_view'),
+    path('map', MapView.as_view(), name='my_map_view'),
 ]

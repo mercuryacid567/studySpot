@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<header class="masthead bg-index text-white text-center py-4">
+  <div class="container d-flex align-items-center flex-column pt-2">
+    <h2 ><b>Study Spot</b></h2>
+    <p>"Your GT Study Helper!!!"</p>
+  </div>
+</header>
+<div class="p-5">
+  <div class="container">
+      <div class="pageholder">
+    <div class="titleholder">
+
+        <div class="title"> More Info for {{location.name}} </div>
+
+    </div>
+    <div class="linkholder">
+            <table id="ourtable3" class="myTable m-3">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Spots</th>
+                        <th>Time</th>
+                        <th>Location</th>
+                        <th>Address</th>
+                        <th>Zipcode</th>
+                        <th>City</th>
+                        <th>Country</th>
+                        <th>Lat</th>
+                        <th>Lng</th>
+                        <th>Place id</th>
+
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td> {{location.id}} </td>
+                        <td> {{location.name}} </td>
+                        <td> {{location.spots}} </td>
+                        <td> {{location.time}} </td>
+                        <td> {{location.location}} </td>
+                        <td> {{location.address}} </td>
+                        <td> {{location.zipcode}} </td>
+                        <td> {{location.city}} </td>
+                        <td> {{location.country}} </td>
+                        <td> {{lat}} </td>
+                        <td> {{lng}} </td>
+                        <td> {{place_id}} </td>
+
+                    </tr>
+                </tbody>
+            </table>
+     </div>
+  </div>
+</div>
+</div>
+{% endblock content %}
