@@ -14,7 +14,7 @@
     <!-- Header -->
     <nav class="p-3 navbar navbar-dark bg-dark navbar-expand-lg">
       <div class="container">
-        <a class="navbar-brand" href="{% url 'home.index' %}">
+        <a class="navbar-brand" href="{% url 'home' %}">
           <img src="{% static 'img/logo.png' %}" alt="logo" height="40" />
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -22,7 +22,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
           <div class="navbar-nav ms-auto navbar-ml">
-            <a class="nav-link" href="{% url 'home.about' %}">About</a>
+            <a class="nav-link" href="{% url 'my_map_view' %}">Map</a>
             <a class="nav-link" href="{% url 'movies.index' %}">Movies</a>
             <a class="nav-link" href="{% url 'cart.index' %}">Cart</a>
               <div class="vr bg-white mx-2 d-none
@@ -50,18 +50,11 @@
       <div class="container">
         <div class="row mt-3 text-white">
           <div class="col-md-6 col-lg-6 col-xl-6mx-auto mb-4">
-            <b>GT MOVIES STORE</b>
+            <b>STUDY SPOT</b>
             <hr />
             <p>
-              Welcome to GT Movies Store, the destination for all your movie desires.
-                With genres ranging from comedy to romance to horror, GT Movies Store is your one-stop shop
-                for your film fantasies! We update our catalogue every week, so stop by!
+              Welcome to Study Spot!
             </p>
-          </div>
-          <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
-            <b>LINKS</b>
-            <hr />
-            <p><a class="nav-link" href="{% url 'home.about' %}">About</a></p>
           </div>
           <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mb-4">
             <b>CONTACT</b>
@@ -70,10 +63,10 @@
               759 Ferst Dr, Atlanta, Georgia
             </p>
             <p><i class="fas fa-envelope me-2"></i>
-              help@gtmoviesstore.com
+              help@studyspot.com
             </p>
             <p><i class="fas fa-phone me-2"></i>
-              1-800-GTMOVIE
+              1-800-gtstudy
             </p>
           </div>
         </div>
@@ -84,9 +77,6 @@
         <div class="me-5 text-white">
           <span>Designed by:
               Subhan Aamir, Jenasis Campbell, Joshua Dietzenbach, Tanvi Hayer, and Samantha Nyazema.
-              With template tutorial made by
-            <a href="https://www.x.com/danielgarax" target="_blank">Daniel Correa</a> and
-            <a href="https://www.x.com/greglim81" target="_blank">Greg Lim</a>.
           </span>
         </div>
         <div class="text-white">

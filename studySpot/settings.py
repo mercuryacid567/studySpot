@@ -134,6 +134,4 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-
-GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
-
+GOOGLE_API_KEY = os.environ.get('GOOGLE_MAPS_API')
