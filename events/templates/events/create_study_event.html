@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="p-3">
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col mx-auto mb-3">
+        <h2>Create a Study Event</h2>
+        <hr />
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <form method="POST">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" name="title" id="title" class="form-control" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="location" class="form-label">Location</label>
+            <input type="text" name="location" id="location" class="form-control" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="time" class="form-label">Time</label>
+            <input type="datetime-local" name="time" id="time" class="form-control" required>
+          </div>
+
+          <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-success">Create Event</button>
+          </div>
+        </form>
+
+        <div class="text-center mt-3">
+          <a href="{% url 'events.home' %}" class="btn btn-primary">Back to Study Spots</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
