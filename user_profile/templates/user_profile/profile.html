@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<div class="p-3">
+  <div class="container">
+    <div class="row mt-3">
+      <div class="col-md-6 mx-auto mb-3">
+        <h2>Profile</h2>
+        <hr />
+        <p>Welcome to Profile!</p>
+        <p>Add information about your name/ username, a profile image, and a short description about yourself!</p>
+
+        <!-- Edit Profile Form -->
+        <form method="post" enctype="multipart/form-data" action="" style="background: #f9f9ff; padding: 20px; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+          {% csrf_token %}
+          <div class="mb-3 text-start">
+            <label for="username" class="form-label" style="font-weight: 500;">Username</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Your username" style="border-radius: 12px;" />
+          </div>
+          <div class="mb-3 text-start">
+            <label for="bio" class="form-label" style="font-weight: 500;">Bio</label>
+            <textarea class="form-control" id="bio" name="bio" rows="3" placeholder="Tell us about your vibe ✨" style="border-radius: 12px;"></textarea>
+          </div>
+          <div class="mb-3 text-start">
+            <label for="profileImage" class="form-label" style="font-weight: 500;">Profile Image</label>
+            <input type="file" class="form-control" id="profileImage" name="profileImage" style="border-radius: 12px;" />
+          </div>
+          <button type="submit" class="btn" style="background-color: #6c63ff; color: white; border-radius: 25px; padding: 10px 20px; font-weight: 600;">Save Changes 💾</button>
+        </form>
+        <!-- End Edit Profile Form -->
+
+      </div>
+
+      <div class="col-md-6 mx-auto mb-3 text-center">
+        <img src="{% static 'img/StudySpotProfile.png' %}" style="max-width: 100%; height: auto;" alt="StudySpotProfile" />
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'movies',
     'accounts',
     'cart',
+    'user_profile',
 ]
 
 MIDDLEWARE = [
@@ -133,4 +134,6 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+
 GOOGLE_API_KEY = os.environ.get('GOOGLE_API_KEY')
+
