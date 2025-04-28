@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from django.db import models
 
 class Locations(models.Model):
