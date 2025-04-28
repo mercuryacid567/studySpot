@@ -23,14 +23,17 @@
                 <strong>Time:</strong> {{ event.time }}<br>
                 <strong>Spots Left:</strong> {{ event.spots }}
               </p>
-
-              {% if user not in event.participants.all and event.spots > 0 %}
-                <a href="{% url 'join_study_event' event.id %}" class="btn btn-dark mt-auto">Join</a>
-              {% elif event.spots == 0 %}
-                <button class="btn btn-secondary mt-auto" disabled>Event Full</button>
-              {% else %}
+                {% if user in event.participants.all %}
                     <a href="{% url 'leave_study_event' event.id %}" class="btn btn-light mt-auto">Leave</a>
-              {% endif %}
+                {% endif %}
+
+                {% if user not in event.participants.all and event.spots > 0 %}
+                    <a href="{% url 'join_study_event' event.id %}" class="btn btn-dark mt-auto">Join</a>
+                {% endif %}
+
+                {% if event.spots == 0 %}
+                    <button class="btn btn-secondary mt-auto" disabled>Event Full</button>
+                {% endif %}
             </div>
           </div>
         </div>
