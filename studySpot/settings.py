@@ -40,9 +40,7 @@ INSTALLED_APPS = [
     'login.apps.LoginConfig',
     'home',
     'events',
-    'movies',
     'accounts',
-    'cart',
     'user_profile',
 ]
 

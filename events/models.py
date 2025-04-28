@@ -11,7 +11,7 @@ class StudyEvent(models.Model):
     location = models.CharField(max_length=200)
     time = models.DateTimeField()
     spots = models.IntegerField(default=10)
-    address = models.CharField(max_length=255, blank=True, null=True)
+    address = models.CharField(max_length=200)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_events')
     participants = models.ManyToManyField(User, related_name='joined_events')
 
@@ -26,9 +26,10 @@ class StudyEvent(models.Model):
                 location=self.location,
                 time=self.time,
                 spots=self.spots,
+                zipcode = "30332",
                 city="Atlanta",
                 country="USA",
-                address=self.address
+                address=self.address,
             )
             self.location_object = new_location  # Link the new location
             super().save(update_fields=['location_object'])
