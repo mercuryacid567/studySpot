@@ -176,3 +176,28 @@ form{
     margin-bottom: 20px;
     box-shadow: 0 0 20px rgba(0, 0, 0, .15);
 }
+
+.event-card {
+        transition: transform 0.2s;
+    }
+    .event-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .event-host {
+        font-weight: 500;
+        color: #6c63ff;
+    }
+.upcoming-event {
+        border-left: 4px solid #28a745; /*upcoming events are green!*/
+    }
+.past-event {
+    border-left: 4px solid #6c757d; /*past events are gray*/
+    opacity: 0.85;
+}
+.upcoming-event h5 {
+    color: #28a745;
+}
+.past-event h5 {
+    color: #6c757d;
+}
