@@ -7,8 +7,17 @@ from django.http import HttpResponseForbidden
 # Create your views here.
 @login_required
 def study_spots_home(request):
-    events = StudyEvent.objects.all()
+    allowed_vibes = ['grind', 'quiet', 'casual']
+    vibe = request.GET.get('vibe', '').strip().lower()
+
+    if vibe in allowed_vibes:
+        events = StudyEvent.objects.filter(vibe__iexact=vibe)
+    else:
+        # Show all events if "all", empty, or invalid vibe
+        events = StudyEvent.objects.all()
+
     return render(request, 'events/study_spots_home.html', {'events': events})
+
 
 @login_required
 def create_study_event(request):
@@ -41,3 +50,5 @@ def leave_study_event(request, event_id):
         event.save()
 
     return redirect('events.home')
+
+

@@ -5,6 +5,11 @@ from home.models import Locations
 # Create your models here.
 
 class StudyEvent(models.Model):
+    VIBE_CHOICES = [
+        ('grind', 'Grind Study'),
+        ('quiet', 'Quiet Study'),
+        ('casual', 'Casual Study'),
+    ]
     location_object = models.ForeignKey(Locations, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
@@ -14,6 +19,7 @@ class StudyEvent(models.Model):
     address = models.CharField(max_length=200, null=True, blank=True)
     created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='created_events')
     participants = models.ManyToManyField(User, related_name='joined_events')
+    vibe = models.CharField(max_length=10, choices=VIBE_CHOICES, default='grind')
 
     def save(self, *args, **kwargs):
         creating = self.pk is None  # Check if this is a new StudyEvent
