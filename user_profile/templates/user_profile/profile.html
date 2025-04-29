@@ -22,21 +22,23 @@
         {% endif %}
 
         <!-- Edit Profile Form -->
-        <form method="post" enctype="multipart/form-data" action="{% url 'profile' %}" style="background: #f9f9ff; padding: 20px; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+        <form method="post" enctype="multipart/form-data" action="" style="background: #f9f9ff; padding: 20px; border-radius: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
           {% csrf_token %}
           <div class="mb-3 text-start">
             <label for="username" class="form-label" style="font-weight: 500;">Username</label>
-            <input type="text" class="form-control" id="username" name="username" placeholder="Your username" value="{{ user.username }}" style="border-radius: 12px;" />
+            <input type="text" class="form-control" id="username" name="username"
+                   placeholder="Your username" value="{{ user.username }}" style="border-radius: 12px;" />
           </div>
           <div class="mb-3 text-start">
             <label for="bio" class="form-label" style="font-weight: 500;">Bio</label>
-            <textarea class="form-control" id="bio" name="bio" rows="3" placeholder="Tell us about your vibe ✨" style="border-radius: 12px;">{{ profile.bio }}</textarea>
+            <textarea class="form-control" id="bio" name="bio" rows="3"
+                      placeholder="Tell us about your vibe ✨" style="border-radius: 12px;">{{ profile.bio }}</textarea>
           </div>
           <div class="mb-3 text-start">
             <label for="profileImage" class="form-label" style="font-weight: 500;">Profile Image</label>
-            {% if profile.profile_image %}
+            {% if profile.profile_pic %}
             <div class="mb-2">
-              <img src="{{ profile.profile_image.url }}" alt="Current profile image" style="max-width: 100px; border-radius: 50%;">
+              <img src="{{ profile.profile_pic.url }}" alt="Current profile image" style="max-width: 100px; border-radius: 50%;">
             </div>
             {% endif %}
             <input type="file" class="form-control" id="profileImage" name="profileImage" style="border-radius: 12px;" />
