@@ -4,66 +4,137 @@
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 
+<style>
+  #map {
+    height: 500px;
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  #search-container {
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  #pac-input {
+    width: 100%;
+    max-width: 500px;
+    padding: 10px 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+</style>
+
 <script>
-    let map
+  let map;
 
-    function initMap(){
+  function initMap() {
+    const locations = {{ locations|safe }};
+    const infoWindows = [];
 
-        var locations = {{ locations|safe}};
-        var firstLocation = locations[0]
-        var infoWindow = []
+    // Initialize map
+    map = new google.maps.Map(document.getElementById("map"), {
+      center: { lat: 33.776, lng: -84.398 },
+      zoom: 15,
+    });
 
-        map = new google.maps.Map(document.getElementById("map"),{
-            center: { lat: 33.776, lng: -84.398},
-            zoom: 15,
-        }
-        );
+    // Add your custom location markers
+    locations.forEach(function (location) {
+      const marker = new google.maps.Marker({
+        position: { lat: location.lat, lng: location.lng },
+        map: map,
+        title: location.name
+      });
 
-        locations.forEach(function (location){
-            var marker = new google.maps.Marker({
-                position: {lat: location.lat, lng: location.lng},
-                map: map,
-                title: location.name
-            });
+      const infowindow = new google.maps.InfoWindow({
+        content: location.name + " | Location: " + location.location + " | Spots: " + location.spots
+      });
 
-            var infowindow = new google.maps.InfoWindow({
-                content: location.name + " | " + "Location: " + location.location +
-                    " | " + "Spots: " + location.spots
-            });
+      infoWindows.push(infowindow);
 
-            infoWindow.push(infowindow)
+      marker.addListener('click', function () {
+        infoWindows.forEach(iw => iw.close());
+        infowindow.open(map, marker);
+      });
+    });
 
-            marker.addListener('click', function(){
-                infoWindow.forEach(function(iw){
-                    iw.close();
-                });
+    // Add Google Places SearchBox
+    const input = document.getElementById("pac-input");
+    const searchBox = new google.maps.places.SearchBox(input);
 
-                infowindow.open(map, marker)
-            });
+    map.addListener("bounds_changed", () => {
+      searchBox.setBounds(map.getBounds());
+    });
+
+    let searchMarkers = [];
+
+    searchBox.addListener("places_changed", () => {
+      const places = searchBox.getPlaces();
+      if (places.length === 0) return;
+
+      // Clear old search markers
+      searchMarkers.forEach(marker => marker.setMap(null));
+      searchMarkers = [];
+
+      const bounds = new google.maps.LatLngBounds();
+
+      places.forEach((place) => {
+        if (!place.geometry || !place.geometry.location) return;
+
+        // Add a marker for the searched place
+        const marker = new google.maps.Marker({
+          map,
+          title: place.name,
+          position: place.geometry.location,
+          icon: {
+            url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+          }
         });
-    }
 
-    window.initMap = initMap
+        searchMarkers.push(marker);
 
+        if (place.geometry.viewport) {
+          bounds.union(place.geometry.viewport);
+        } else {
+          bounds.extend(place.geometry.location);
+        }
+      });
+
+      map.fitBounds(bounds);
+    });
+  }
+
+  window.initMap = initMap;
 </script>
 
 <div class="pageholder">
-    <div class="row mt-3">
-      <div class="col mx-auto mb-3">
-          <h2>Map</h2>
-          <hr />
-      </div>
+  <div class="row mt-3">
+    <div class="col mx-auto mb-3">
+      <h2>Map</h2>
+      <hr />
     </div>
-    <div class="linkholder">
-        <div class="mapholder">
-            <div id="map"> </div>
+  </div>
 
-            <script async
-                src="https://maps.googleapis.com/maps/api/js?key={{key}}&callback=initMap">
-            </script>
-
-        </div>
-
+  <div class="linkholder">
+    <!-- Search bar -->
+    <div id="search-container">
+      <input id="pac-input" type="text" placeholder="Search for places..." />
     </div>
+
+    <!-- Map -->
+    <div class="mapholder">
+      <div id="map"></div>
+    </div>
+  </div>
 </div>
+
+<!-- Load Google Maps with Places Library -->
+<script async
+  src="https://maps.googleapis.com/maps/api/js?key={{ key }}&callback=initMap&libraries=places">
+</script>
+
 {% endblock content %}
